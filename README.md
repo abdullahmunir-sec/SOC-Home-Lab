@@ -31,3 +31,8 @@ process creation, network connections, and system activity logs.
 These logs serve as the primary data source for detection and analysis
 during Phase 1 of the lab.
 
+To enhance visibility, a custom Sysmon configuration was applied
+to enable detailed network connection logging (Event ID 3),
+aligning endpoint telemetry with SOC detection requirements.
+
+
