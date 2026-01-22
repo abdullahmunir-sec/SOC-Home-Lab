@@ -24,3 +24,10 @@ network-based SOC architecture as resources scale.
 The lab design is inspired by enterprise SOC monitoring architectures involving
 firewalls, SIEM platforms, and network-based detection tools. The implementation
 prioritizes clarity, scalability, and real-world SOC workflows.
+
+## Endpoint Telemetry
+Sysmon was deployed on the Windows endpoint to capture detailed
+process creation, network connections, and system activity logs.
+These logs serve as the primary data source for detection and analysis
+during Phase 1 of the lab.
+
