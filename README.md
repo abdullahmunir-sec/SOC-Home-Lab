@@ -103,3 +103,34 @@ and extracts the queried domain for investigation.
 **Sysmon Event Log (Event ID 22)**
 ![Sysmon Event](screenshots/detection-02-powershell-dns/sysmon-event.png)
 
+
+## Detection Use Case 03 — Encoded PowerShell Commands (Sysmon Event ID 1)
+
+**Goal:** Detect obfuscated PowerShell execution using encoded commands, a
+commonly abused technique for defense evasion.
+
+**Data Source:** Sysmon, Event ID 1 (Process Creation)
+
+**Test Performed:**  
+Executed PowerShell with the `-EncodedCommand` flag using a benign payload.
+(The payload execution failed, but the encoded execution attempt was logged.)
+
+**Detection Logic:**  
+Identify PowerShell process creation events where the command line contains
+encoded command flags.
+
+**Outcome:**  
+Confirmed that Splunk reliably detects encoded PowerShell execution attempts
+and captures the full command line for investigation.
+
+### Evidence
+
+**PowerShell Encoded Query Execution**
+![PowerShell Encoded Query](screenshots/detection-03-encoded-powershell/vm-command.png)
+
+**Splunk Detection Results**
+![Splunk Results](screenshots/detection-03-encoded-powershell/splunk-results.png)
+
+**Sysmon Event Log (Event ID 1)**
+![Sysmon Event](screenshots/detection-03-encoded-powershell/sysmon-event.png)
+
