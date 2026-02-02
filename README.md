@@ -35,4 +35,8 @@ To enhance visibility, a custom Sysmon configuration was applied
 to enable detailed network connection logging (Event ID 3),
 aligning endpoint telemetry with SOC detection requirements.
 
+Sysmon WinEventLog input was configured to forward events in XML format (renderXml=true),
+enabling consistent parsing and reliable detection queries in Splunk.
+
+
 
