@@ -72,3 +72,34 @@ query reliably returns PowerShell-initiated network connections.
 **Sysmon Event Log (Event ID 3)**
 ![Sysmon Event](screenshots/detection-01-powershell-network/sysmon-event.png)
 
+
+## Detection Use Case 02 — PowerShell DNS Queries (Sysmon Event ID 22)
+
+**Goal:** Detect DNS queries initiated by PowerShell, which may indicate
+command-and-control communication, staging activity, or script-based malware.
+
+**Data Source:** Sysmon (Microsoft-Windows-Sysmon/Operational), Event ID 22  
+**SIEM:** Splunk (Sysmon forwarded as XML)
+
+**Test Performed:**  
+`Resolve-DnsName example.com`
+
+**Detection Logic:**  
+Filter Sysmon DNS query events where the initiating process image is
+`powershell.exe`.
+
+**Outcome:**  
+Confirmed that Splunk successfully identifies PowerShell-initiated DNS queries
+and extracts the queried domain for investigation.
+
+### Evidence
+
+**PowerShell DNS Query Execution**
+![PowerShell DNS Query](screenshots/detection-02-powershell-dns/vm-command.png)
+
+**Splunk Detection Results**
+![Splunk Results](screenshots/detection-02-powershell-dns/splunk-results.png)
+
+**Sysmon Event Log (Event ID 22)**
+![Sysmon Event](screenshots/detection-02-powershell-dns/sysmon-event.png)
+
