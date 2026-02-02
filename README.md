@@ -38,5 +38,37 @@ aligning endpoint telemetry with SOC detection requirements.
 Sysmon WinEventLog input was configured to forward events in XML format (renderXml=true),
 enabling consistent parsing and reliable detection queries in Splunk.
 
+## Detection Use Case 01 — PowerShell Network Connections (Sysmon Event ID 3)
 
+### Goal
+Detect outbound network connections initiated by PowerShell, a common indicator
+in phishing, malware execution, and living-off-the-land techniques.
+
+### Data Source
+- Sysmon: Microsoft-Windows-Sysmon/Operational
+- Event Type: Network connection (Event ID 3)
+- Ingestion: Splunk (XML rendering enabled via `renderXml=true`)
+
+### Test Performed (Safe)
+Executed a benign outbound connectivity test from PowerShell:
+`Test-NetConnection 8.8.8.8 -Port 443`
+
+### Detection Logic (High Level)
+Query Sysmon network connection events and filter where the initiating process
+image is `powershell.exe` or `pwsh.exe`.
+
+### Outcome
+Verified that Splunk successfully ingests Sysmon telemetry and that the detection
+query reliably returns PowerShell-initiated network connections.
+
+### Evidence
+
+**PowerShell Network Query Execution**
+![PowerShell Network Query](screenshots/detection-01-powershell-network/vm-command.png)
+
+**Splunk Detection Results**
+![Splunk Results](screenshots/detection-01-powershell-network/splunk-results.png)
+
+**Sysmon Event Log (Event ID 3)**
+![Sysmon Event](screenshots/detection-01-powershell-network/sysmon-event.png)
 
